@@ -1,0 +1,163 @@
+# Data source configuration
+data: "../fidchar/data.csv"
+
+# Output file configuration
+output_dir: "output"
+output: "charity_evaluations"
+
+# Charapi configuration path (for charity evaluations)
+charapi_config_path: "/Users/pitosalas/mydev/charapi/charapi/config/config.yaml"
+
+# Processing limit (number of EINs to process, 0 = all)
+limit: 0
+
+# Batch processing (number of EINs per batch, 0 = no batching)
+batch: 25
+
+# Fields to extract from charapi
+fields:
+  ein:  # Employer Identification Number
+    include: true
+
+  organization_name:  # Official charity name
+    include: true
+
+  score:  # Overall evaluation score
+    include: true
+
+  alignment_score:  # Match with donor preferences (0-100)
+    include: false
+
+  outstanding_count:  # Number of outstanding metrics
+    include: false
+
+  acceptable_count:  # Number of acceptable metrics
+    include: false
+
+  unacceptable_count:  # Number of unacceptable metrics
+    include: true
+
+  total_metrics:  # Total metrics evaluated
+    include: false
+
+  summary:  # Human-readable evaluation summary
+    include: false
+
+  mission:  # Organization mission statement
+    include: true
+
+  evaluation_timestamp:  # When evaluation was performed
+    include: false
+
+  program_expense_ratio:  # Program expenses / total expenses
+    include: true
+
+  admin_expense_ratio:  # Admin expenses / total expenses
+    include: true
+
+  fundraising_expense_ratio:  # Fundraising expenses / total expenses
+    include: true
+
+  net_assets:  # Total assets minus liabilities
+    include: true
+
+  total_revenue:  # Total annual revenue
+    include: true
+
+  total_expenses:  # Total annual expenses
+    include: true
+
+  program_expenses:  # Expenses on programs
+    include: true
+
+  admin_expenses:  # Administrative expenses
+    include: true
+
+  fundraising_expenses:  # Fundraising expenses
+    include: true
+
+  total_assets:  # Total assets
+    include: true
+
+  total_liabilities:  # Total liabilities
+    include: true
+
+  is_compliant:  # Meets all compliance requirements
+    include: true
+
+  in_pub78:  # Listed in IRS Publication 78
+    include: true
+
+  is_revoked:  # Tax-exempt status revoked
+    include: true
+
+  has_recent_filing:  # Filed Form 990 recently
+    include: true
+
+  charity_navigator_rating:  # Star rating (1-4)
+    include: true
+
+  charity_navigator_score:  # Numeric score from Charity Navigator
+    include: true
+
+  has_transparency_seal:  # Candid transparency seal
+    include: true
+
+  has_advisory_alerts:  # Has advisory alerts
+    include: true
+
+  negative_news_alerts:  # Number of negative news alerts
+    include: true
+
+  subsection:  # IRS subsection code (e.g., 3 for 501c3)
+    include: true
+
+  foundation_type:  # IRS foundation type code
+    include: true
+
+  filing_requirement:  # IRS filing requirement code
+    include: true
+
+  years_operating:  # Years since founding
+    include: true
+
+  data_sources_used:  # List of data sources (ProPublica, CharityAPI, etc.)
+    include: true
+
+  metrics:  # List of all computed metrics
+    include: false
+
+  financial_metrics:  # Financial metrics dataclass container
+    include: false
+
+  compliance_check:  # Compliance check dataclass container
+    include: false
+
+  external_validation:  # External validation dataclass container
+    include: false
+
+  organization_type:  # Organization type dataclass container
+    include: true
+
+# Fields aggregated from input CSV
+input_aggregates:
+  total_donated:  # Total amount donated to this charity
+    include: true
+    csv_field: "Amount"  # Field to aggregate from input CSV
+    aggregation: "sum"  # Type of aggregation to perform
+    data_clean: "currency"  # Data cleaning: currency (remove $ and commas) or none
+
+  donation_count:  # Number of times this charity received donations
+    include: true
+    csv_field: "Tax ID"  # Field to count occurrences
+    aggregation: "count"  # Count occurrences
+
+  most_recent_donation_date:  # Date of most recent donation
+    include: true
+    csv_field: "Approved Date"  # Field to find max date
+    aggregation: "max"  # Get most recent date
+
+  charitable_sector:  # Charitable sector from input CSV
+    include: true
+    csv_field: "Charitable Sector"  # Field to extract
+    aggregation: "first"  # Take first value (assumes same for all rows with same EIN)

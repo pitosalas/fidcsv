@@ -1,0 +1,18 @@
+Charity prompt
+
+I am giving you data about donations made to a series of charities. Read the files in carefully. Read every line. Parse it. Make sure you dont miss any or double count.
+
+Start building a report. The report will start with a summery of the data. How many charities, how they are distributed by category and any other aggregate features you can see.
+
+Analyze the data for reasonableness. We are looking for data that does not make sense, that contradicts has regular error patterns. Add to the report a section about the data quality.
+
+Analyze the donations and the donors  intent. What can we tell about the donors priorities and philosophy and approach to donating. What can we tell about their approach.
+
+Write a short narrative summary of what we can conclude about them. It should be two or three paragraphs.
+
+Next we want a tight bulleted summary of the donors intent, philosophy, priorities etc. This could be a slide or visual artifact.
+
+We want now a list of charities that have received funds which don’t fit at all in the philosophy. They seem to be odd out. And if they are still receiving then we want to recommend that the donor stops that, We should explain briefly why.
+
+Another list are charities that the donor has given money to that fit so well in their approach that they should consider raising the amount a little or a lot in such a way that reinforces and takes further their intent.
+
